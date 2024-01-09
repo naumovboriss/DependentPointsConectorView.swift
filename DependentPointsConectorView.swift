@@ -13,3 +13,13 @@ struct DependentPointsConectorView: View {
         .buttonStyle(.plain)
         .opacity(store.state.selectedPointsIDs.isEmpty ? 0 : 1)
         .animation(.default, value: store.state.selectedPointsIDs)
+    }
+    
+    private var disconnectButton: some View {
+        Button {
+            store.dispatch(.changeCollage(.disconnectControlPoints(pointsIds)))
+            store.dispatch(.removeSelectedPoints)
+        } label: {
+            createButtonBody(with: "Disconnect")
+        }
+    }
